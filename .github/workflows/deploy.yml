@@ -24,7 +24,7 @@ jobs:
           pip install ansible[azure]
           pip install azure-cli
 
-          # Install all necessary Azure SDK modules
+          # Install all required Azure SDK modules
           pip install "azure" "azure-mgmt-resource" "azure-mgmt-network" \
                       "azure-mgmt-compute" "azure-identity" "azure-mgmt-storage" \
                       "azure-storage-blob" "msrest" "msrestazure" "azure-keyvault-secrets"
@@ -35,6 +35,9 @@ jobs:
             -u ${{ secrets.AZURE_CLIENT_ID }} \
             -p ${{ secrets.AZURE_CLIENT_SECRET }} \
             --tenant ${{ secrets.AZURE_TENANT_ID }}
+
+          # Set the correct Azure Subscription
+          az account set --subscription ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Run Ansible Playbook
         run: |

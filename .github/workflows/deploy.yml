@@ -7,12 +7,16 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
-    container: quay.io/ansible/ansible-runner  # ✅ Correct Ansible image
+    runs-on: ubuntu-latest  # ✅ Use GitHub-hosted runner (includes Azure CLI & Ansible)
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Install Ansible
+        run: |
+          sudo apt update
+          sudo apt install -y ansible
 
       - name: Authenticate with Azure
         run: |

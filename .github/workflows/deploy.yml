@@ -24,10 +24,11 @@ jobs:
           pip install ansible[azure]
           pip install azure-cli
 
-          # Install only the required Azure SDK modules (removes 'azure' meta-package)
+          # Install only the required Azure SDK modules (including automation)
           pip install "azure-mgmt-resource" "azure-mgmt-network" \
                       "azure-mgmt-compute" "azure-identity" "azure-mgmt-storage" \
-                      "azure-storage-blob" "msrest" "msrestazure" "azure-keyvault-secrets"
+                      "azure-storage-blob" "msrest" "msrestazure" "azure-keyvault-secrets" \
+                      "azure-mgmt-automation"
 
       - name: Authenticate with Azure
         run: |
@@ -39,6 +40,6 @@ jobs:
           # Set the correct Azure Subscription
           az account set --subscription ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Run Ansible Playbook
+      - name: Run Ansible Playbook with Debugging
         run: |
-          ansible-playbook deploy_rg.yml
+          ansible-playbook deploy_rg.yml -vvv

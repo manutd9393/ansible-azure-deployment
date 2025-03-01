@@ -24,8 +24,8 @@ jobs:
           pip install ansible[azure]
           pip install azure-cli
 
-          # Install all required Azure SDK modules
-          pip install "azure" "azure-mgmt-resource" "azure-mgmt-network" \
+          # Install only the required Azure SDK modules (removes 'azure' meta-package)
+          pip install "azure-mgmt-resource" "azure-mgmt-network" \
                       "azure-mgmt-compute" "azure-identity" "azure-mgmt-storage" \
                       "azure-storage-blob" "msrest" "msrestazure" "azure-keyvault-secrets"
 

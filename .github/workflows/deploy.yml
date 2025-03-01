@@ -25,6 +25,9 @@ jobs:
           pip install azure-cli
           pip install -r requirements.txt || true
 
+          # Install missing Azure SDK modules
+          pip install 'azure-mgmt-resource' 'azure-mgmt-network' 'azure-mgmt-compute' 'azure-identity'
+
       - name: Authenticate with Azure
         run: |
           az login --service-principal \

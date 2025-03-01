@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    container: ghcr.io/ansible/ansible-runner:latest  # Pre-configured Ansible image
+    container: quay.io/ansible/ansible-runner  # ✅ Correct Ansible image
 
     steps:
       - name: Checkout repository
